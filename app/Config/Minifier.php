@@ -1,6 +1,6 @@
 <?php namespace Config;
 
-use CodeIgniter\Config\BaseConfig;
+use Michalsn\Minifier\Adapters\Js\MinifyAdapter;
 
 class Minifier extends \Michalsn\Minifier\Config\Minifier
 {
@@ -23,7 +23,8 @@ class Minifier extends \Michalsn\Minifier\Config\Minifier
     //      https://mydomain.com
     //      https://static.mydomain.com
 
-    public $baseUrl = null;
+
+    public $baseUrl = 'http://localhost:3000';
 
     //--------------------------------------------------------------------
     // Base JS URL for assets
@@ -53,7 +54,7 @@ class Minifier extends \Michalsn\Minifier\Config\Minifier
     // JS adapter
     //--------------------------------------------------------------------
 
-    public $adapterJs = \Michalsn\Minifier\Adapters\Js\MinifyAdapter::class;
+    public $adapterJs = MinifyAdapter::class;
 
     //--------------------------------------------------------------------
     // CSS adapter
@@ -65,31 +66,31 @@ class Minifier extends \Michalsn\Minifier\Config\Minifier
     // JS assets directory
     //--------------------------------------------------------------------
 
-    public $dirJs = './assets/js';
+    public $dirJs = './';
 
     //--------------------------------------------------------------------
     // CSS assets directory
     //--------------------------------------------------------------------
 
-    public $dirCss = './assets/css';
+    public $dirCss = './';
 
     //--------------------------------------------------------------------
     // JS minified assets directory
     //--------------------------------------------------------------------
 
-    public $dirMinJs = null;
+    public $dirMinJs = './assets/minify/js/';
 
     //--------------------------------------------------------------------
     // CSS minified assets directory
     //--------------------------------------------------------------------
 
-    public $dirMinCss = null;
+    public $dirMinCss = './assets/minify/css/';
 
     //--------------------------------------------------------------------
     // Version assets directory
     //--------------------------------------------------------------------
 
-    public $dirVersion = './assets';
+    public $dirVersion = './assets/minify/';
 
     //--------------------------------------------------------------------
     // JS tag
@@ -103,51 +104,71 @@ class Minifier extends \Michalsn\Minifier\Config\Minifier
 
     public $tagCss = '<link rel="stylesheet" href="%s">';
 
-    //--------------------------------------------------------------------
-    // Return type
-    //--------------------------------------------------------------------
-    // Determines how the files will be returned. The dafault value is
-    // 'html' and it uses the $tagJs and $tagCss variables. Using 'array'
-    // will return the php array and 'json' type will return a json string.
-    //
-    // Available types:
-    //      'html', 'array', 'json'
-
     public $returnType = 'html';
-
-    //--------------------------------------------------------------------
-    // Enable auto deploy on change
-    //--------------------------------------------------------------------
-    // Use this variable to automatically deploy when there are any
-    // changes in assets files.
-
     public $autoDeployOnChange = false;
 
     //--------------------------------------------------------------------
     // JS files config
     //--------------------------------------------------------------------
-    // This array defines files to minify.
-    //
-    // Example array:
-    //      'all.min.js' => [
-    //          'jquery-3.2.1.min.js', 'bootstrap-3.3.7.min.js', 'main.js',
-    //      ],
-
     public $js = [
+        'app.min.js' => [
+            'plugins/jQuery/jQuery-3.6.0.min.js',
+            'assets/js/app.min.js',
+            'assets/js/demo.js',
+            'assets/bootstrap/js/bootstrap.min.js',
+            'assets/js/pages/dashboard2.js',
+            'plugins/fontawesome-6.1.1/js/all.min.js',
+        ],
+        'jvectormap.min.js' => [
+            'plugins/jvectormap/jquery-jvectormap-1.2.2.min.js',
+            'plugins/jvectormap/jquery-jvectormap-world-mill-en.js',
+        ],
+        'datatable.min.js' => [
 
+        ],
+        'datatable_button.min.js' => [
+
+        ],
+        'app_chart.min.js' => [
+
+        ],
+        'jquery_steps.min.js' => [
+
+        ],
+        'notification.min.js' => [
+
+        ],
+        'tree.min.js' => [
+        ]
     ];
 
     //--------------------------------------------------------------------
     // CSS files config
     //--------------------------------------------------------------------
-    // This array defines files to minify.
-    //
-    // Example array:
-    //      'all.min.css' => [
-    //          'bootstrap-3.3.7.min.css', 'font-awesome-4.7.0.min.css', 'main.css',
-    //      ],
+
 
     public $css = [
+        'app.min.css' => [
+            'assets/bootstrap/css/bootstrap.min.css',
+            'assets/css/AdminLTE.css',
+            'assets/css/skins/_all-skins.min.css',
+            'plugins/fontawesome-6.1.1/css/all.min.css',
+        ],
+        'jvectormap.min.css' => [
+            'plugins/jvectormap/jquery-jvectormap-1.2.2.css',
+        ],
+        'datatable.min.css' => [
+            'plugins/datatables/jquery.dataTables.css',
+            'plugins/datatables/dataTables.bootstrap.css',
+        ],
+        'datatable_responsive.min' => [
+            'plugins/datatables/extensions/Responsive/css/dataTables.responsive.css'
+        ],
+        'jquery_steps.min.css' => [
 
+        ],
+        'tree.min.css' => [
+
+        ]
     ];
 }
